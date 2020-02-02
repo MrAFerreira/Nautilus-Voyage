@@ -9,7 +9,7 @@ class Player {
     this.speedY = 0;
     this.gravity = 1;
     this.gravitySpeed = 0.001;
-    this.keyboardEventListeners();
+    //this.keyboardEventListeners();
   }
 
   newPos() {
@@ -51,7 +51,7 @@ class Player {
     this.game.context.fillRect(this.positionX, this.positionY, this.width, this.height);
   }
 
-  keyboardEventListeners() {
+  /* keyboardEventListeners() {
     window.addEventListener('keydown', event => {
       switch (event.key) {
         case 'w':
@@ -76,7 +76,7 @@ class Player {
           break;
       }
     });
-  }
+  } */
 }
 
 //const player = new Player();

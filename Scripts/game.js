@@ -3,7 +3,35 @@ class Game {
     this.$canvas = $canvas;
     this.context = this.$canvas.getContext('2d');
     this.player = new Player(this);
-    //this.loop();
+    this.controller = new Controller(this);
+    this.controller.keyboardEventListeners();
+    this.depth = 0;
+  }
+
+  background() {
+    this.context.save();
+    //let depthCounter = 0;
+    let gradient = this.context.createLinearGradient(
+      this.$canvas.width / 2,
+      this.depth,
+      this.$canvas.width / 2,
+      5000 - Math.abs(this.depth)
+    );
+    gradient.addColorStop(0, 'cyan');
+    gradient.addColorStop(0.25, 'dodgerblue');
+    gradient.addColorStop(0.5, 'mediumblue');
+    gradient.addColorStop(0.75, 'midnightblue');
+    gradient.addColorStop(1, 'black');
+    this.context.fillStyle = gradient;
+    if (this.player.positionY >= 550) {
+      this.depth--;
+      console.log(this.depth);
+    } else if (this.player.positionY <= 100 && this.depth <= 0) {
+      this.depth += 1;
+      console.log(this.depth);
+    }
+    this.context.fillRect(0, 0, this.$canvas.width, this.$canvas.height);
+    this.context.restore();
   }
 
   clearScreen() {
@@ -13,6 +41,7 @@ class Game {
 
   paint() {
     this.clearScreen();
+    this.background();
     this.player.newPos();
     this.player.paint();
   }
