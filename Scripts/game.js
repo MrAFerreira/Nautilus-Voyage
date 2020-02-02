@@ -2,8 +2,8 @@ class Game {
   constructor($canvas) {
     this.$canvas = $canvas;
     this.context = this.$canvas.getContext('2d');
-    //this.player = new Player(this);
-    this.loop();
+    this.player = new Player(this);
+    //this.loop();
   }
 
   clearScreen() {
@@ -17,10 +17,27 @@ class Game {
     this.player.paint();
   }
 
-  loop() {
+  /*loop() {
     this.paint();
-    context.clearRect(0, 0, $canvas.width, $canvas.height);
+    this.context.clearRect(0, 0, $canvas.width, $canvas.height);
     this.player.checkBoundaries();
     window.requestAnimationFrame(loop);
-  }
+  } */
+
+  /*loop(timestamp) {
+    //this.context.clearRect(0, 0, $canvas.width, $canvas.height);
+    //background.paint();
+    this.paint();
+    //this.player.checkBoundaries();
+    window.requestAnimationFrame(this.loop);
+  }*/
 }
+
+/*const loop = timestamp => {
+  game.context.clearRect(0, 0, $canvas.width, $canvas.height);
+  game.paint();
+  game.player.checkBoundaries();
+  window.requestAnimationFrame(loop);
+};
+
+loop();*/

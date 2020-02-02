@@ -48,7 +48,7 @@ class Player {
   }
 
   paint() {
-    context.fillRect(this.positionX, this.positionY, this.width, this.height);
+    this.game.context.fillRect(this.positionX, this.positionY, this.width, this.height);
   }
 
   keyboardEventListeners() {
@@ -79,4 +79,4 @@ class Player {
   }
 }
 
-const player = new Player();
+//const player = new Player();
