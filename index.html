@@ -8,9 +8,20 @@
     <title>Nautilus Voyage</title>
   </head>
   <body>
-    <canvas width="700" height="700"></canvas>
+    <section>
+      <canvas width="700" height="700"></canvas>
+      <aside>
+        <h1>Maximum Depth: <span>0</span></h1>
+        <h1>Oxygen Capacity: <span id="oxygen-level">100</span></h1>
+        <button id="btn-start">Start</button>
+        <button id="btn-reset">Reset</button>
+        <button id="btn-pause">Pause</button>
+      </aside>
+    </section>
 
+    <script src="Scripts/scoreboard.js"></script>
     <script src="Scripts/keyboard.js"></script>
+    <script src="Scripts/enemies.js"></script>
     <script src="Scripts/player.js"></script>
     <script src="Scripts/game.js"></script>
     <script src="Scripts/main.js"></script>

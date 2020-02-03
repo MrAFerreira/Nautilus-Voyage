@@ -3,27 +3,19 @@ class Player {
     this.game = game;
     this.width = 50;
     this.height = 35;
-    this.positionX = 100;
-    this.positionY = 100;
+    this.positionX = 350;
+    this.positionY = 200;
     this.speedX = 0;
     this.speedY = 0;
     this.gravity = 1;
     this.gravitySpeed = 0.001;
+    this.oxygen = 100;
     //this.keyboardEventListeners();
   }
 
   newPos() {
     let newPositionY = this.positionY + this.speedY;
     let newPositionX = this.positionX + this.speedX;
-
-    /* if (newPositionY > $canvas.height - this.height - 1) {
-      if (speedY >= 0) {
-        speedY = Math.abs(this.speedY) * -1 * 1;
-      }
-    }
-    if (newPositionX < this.width || newPositionX > $canvas.width - this.width) {
-      this.speedX *= -1;
-    }*/
     this.speedY += this.gravitySpeed;
     this.positionY += this.speedY;
     this.positionX += this.speedX;
@@ -35,8 +27,8 @@ class Player {
       this.speedY = 0;
     }
 
-    if (this.positionY >= 600) {
-      this.positionY = 600;
+    if (this.positionY > 600) {
+      this.positionY = 599;
     }
 
     if (this.positionX <= 30) {
@@ -51,32 +43,13 @@ class Player {
     this.game.context.fillRect(this.positionX, this.positionY, this.width, this.height);
   }
 
-  /* keyboardEventListeners() {
-    window.addEventListener('keydown', event => {
-      switch (event.key) {
-        case 'w':
-          if (this.speedY > -2) {
-            this.speedY += -0.5;
-          }
-          break;
-        case 's':
-          if (this.speedY < 2) {
-            this.speedY += 0.5;
-          }
-          break;
-        case 'a':
-          if (this.speedX > -2) {
-            this.speedX += -0.5;
-          }
-          break;
-        case 'd':
-          if (this.speedX < 2) {
-            this.speedX += 0.5;
-          }
-          break;
-      }
-    });
-  } */
+  oxygenLevels() {
+    if (this.game.depth > -1000) {
+      this.oxygen -= 0.005;
+    } else if (this.game.depth > -3000) {
+      this.oxygen -= 0.01;
+    }
+  }
 }
 
 //const player = new Player();

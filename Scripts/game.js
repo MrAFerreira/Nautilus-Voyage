@@ -4,8 +4,17 @@ class Game {
     this.context = this.$canvas.getContext('2d');
     this.player = new Player(this);
     this.controller = new Controller(this);
+    this.scoreboard = new Scoreboard(this);
+    //this.enemy = new Enemy(this);
     this.controller.keyboardEventListeners();
     this.depth = 0;
+    this.ene = [];
+    /* for (let i = 0; i < 50; i++) {
+      let enemy = null;
+      if (i % 2 === 0) enemy = new Enemy(this, 700 + i * 50);
+      else enemy = new Enemy(this, -1 * (700 + i * 50));
+      this.ene.push(enemy);
+    } */
   }
 
   background() {
@@ -42,31 +51,43 @@ class Game {
   paint() {
     this.clearScreen();
     this.background();
-    this.player.newPos();
     this.player.paint();
+    this.scoreboard.paint();
+    for (let enemy of this.ene) {
+      enemy.paint();
+    }
   }
 
-  /*loop() {
-    this.paint();
-    this.context.clearRect(0, 0, $canvas.width, $canvas.height);
-    this.player.checkBoundaries();
-    window.requestAnimationFrame(loop);
+  enemyLoop() {
+    for (let i = 0; i < 6; i++) {
+      let enemy = null;
+      if (i % 2 === 0) enemy = new Enemy(this, 700 + i * 50);
+      else enemy = new Enemy(this, -1 * (700 + i * 50));
+      this.ene.push(enemy);
+    }
+  }
+  /*  enemyLoop() {
+    const enemy = new Enemy(this);
+    if (this.enemies.length > 50) {
+      this.enemies.pop();
+    }
   } */
 
-  /*loop(timestamp) {
-    //this.context.clearRect(0, 0, $canvas.width, $canvas.height);
-    //background.paint();
-    this.paint();
-    //this.player.checkBoundaries();
-    window.requestAnimationFrame(this.loop);
-  }*/
+  runLogic() {
+    this.player.newPos();
+    this.player.oxygenLevels();
+
+    for (let enemy of this.ene) {
+      if (this.ene.indexOf(enemy) % 2 === 0) {
+        enemy.incomingRight();
+      } else {
+        enemy.incomingLeft();
+      }
+    }
+  }
+  // this.enemy.incomingLeft();
 }
 
-/*const loop = timestamp => {
-  game.context.clearRect(0, 0, $canvas.width, $canvas.height);
-  game.paint();
-  game.player.checkBoundaries();
-  window.requestAnimationFrame(loop);
-};
-
-loop();*/
+/* setInterval(() => {
+  game.enemyLoop();
+}, 5000); */

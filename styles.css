@@ -1,6 +1,23 @@
 body {
   display: flex;
   justify-content: center;
+  align-items: center;
+}
+
+section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+aside {
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+  margin-left: 1em;
+  background-color: orange;
+  height: 650px;
+  width: 300px;
 }
 
 /* canvas {
