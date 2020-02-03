@@ -5,16 +5,58 @@ class Game {
     this.player = new Player(this);
     this.controller = new Controller(this);
     this.scoreboard = new Scoreboard(this);
-    //this.enemy = new Enemy(this);
     this.controller.keyboardEventListeners();
     this.depth = 0;
     this.ene = [];
+    this.gameStarted = false;
+    this.gameIsRunning = false;
+    this.setControlBindings();
     /* for (let i = 0; i < 50; i++) {
       let enemy = null;
       if (i % 2 === 0) enemy = new Enemy(this, 700 + i * 50);
       else enemy = new Enemy(this, -1 * (700 + i * 50));
       this.ene.push(enemy);
     } */
+  }
+
+  setControlBindings() {
+    const $buttonStart = document.getElementById('btn-start');
+    const $buttonReset = document.getElementById('btn-reset');
+    const $buttonPause = document.getElementById('btn-pause');
+
+    $buttonStart.addEventListener('click', () => {
+      this.gameStarted = true;
+      this.gameIsRunning = true;
+      console.log('Start clicked');
+      this.start();
+    });
+
+    $buttonReset.addEventListener('click', () => {
+      this.reset();
+    });
+
+    $buttonPause.addEventListener('click', () => {
+      this.pause();
+    });
+  }
+
+  start() {
+    this.loop();
+  }
+
+  pause() {
+    this.gameIsRunning = !this.gameIsRunning;
+  }
+
+  loop() {
+    game.context.clearRect(0, 0, $canvas.width, $canvas.height);
+    game.paint();
+    game.runLogic();
+    game.player.checkBoundaries();
+    if (this.gameIsRunning) {
+      window.requestAnimationFrame(timestamp => this.loop(timestamp));
+    }
+    //window.requestAnimationFrame(timestamp => this.loop(timestamp));
   }
 
   background() {
@@ -59,11 +101,27 @@ class Game {
   }
 
   enemyLoop() {
-    for (let i = 0; i < 6; i++) {
-      let enemy = null;
-      if (i % 2 === 0) enemy = new Enemy(this, 700 + i * 50);
-      else enemy = new Enemy(this, -1 * (700 + i * 50));
-      this.ene.push(enemy);
+    if (this.depth > -1000) {
+      for (let i = 0; i < 6; i++) {
+        let enemy = null;
+        if (i % 2 === 0) enemy = new Enemy(this, 700 + i * 50);
+        else enemy = new Enemy(this, -1 * (700 + i * 50));
+        this.ene.push(enemy);
+      }
+    } else if (this.depth > -2000) {
+      for (let i = 0; i < 6; i++) {
+        let enemy = null;
+        if (i % 2 === 0) enemy = new Turtle(this, 700 + i * 50);
+        else enemy = new Turtle(this, -1 * (700 + i * 50));
+        this.ene.push(enemy);
+      }
+    } else if (this.depth > -3000) {
+      for (let i = 0; i < 6; i++) {
+        let enemy = null;
+        if (i % 2 === 0) enemy = new Shark(this, 700 + i * 50);
+        else enemy = new Shark(this, -1 * (700 + i * 50));
+        this.ene.push(enemy);
+      }
     }
   }
   /*  enemyLoop() {

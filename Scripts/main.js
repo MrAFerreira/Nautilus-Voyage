@@ -1,7 +1,7 @@
 const $canvas = document.querySelector('canvas');
 const game = new Game($canvas);
 
-const loop = timestamp => {
+/* const loop = timestamp => {
   game.context.clearRect(0, 0, $canvas.width, $canvas.height);
   game.paint();
   game.runLogic();
@@ -10,7 +10,7 @@ const loop = timestamp => {
 };
 
 loop();
-
+ */
 setInterval(() => {
   game.enemyLoop();
 }, 3000);
