@@ -25,14 +25,18 @@ class Game {
     const $buttonPause = document.getElementById('btn-pause');
 
     $buttonStart.addEventListener('click', () => {
-      this.gameStarted = true;
-      this.gameIsRunning = true;
+      if (!this.gameIsRunning) {
+        this.gameStarted = true;
+        this.gameIsRunning = true;
+        this.start();
+      }
       console.log('Start clicked');
-      this.start();
     });
 
     $buttonReset.addEventListener('click', () => {
-      this.reset();
+      if (!this.gameIsRunning) {
+        this.start();
+      }
     });
 
     $buttonPause.addEventListener('click', () => {
@@ -45,7 +49,13 @@ class Game {
   }
 
   pause() {
-    this.gameIsRunning = !this.gameIsRunning;
+    console.log('Pause was clicked');
+    if (this.gameIsRunning) {
+      this.gameIsRunning = !this.gameIsRunning;
+    } else {
+      this.gameIsRunning = !this.gameIsRunning;
+      this.start();
+    }
   }
 
   loop() {
@@ -56,7 +66,6 @@ class Game {
     if (this.gameIsRunning) {
       window.requestAnimationFrame(timestamp => this.loop(timestamp));
     }
-    //window.requestAnimationFrame(timestamp => this.loop(timestamp));
   }
 
   background() {
@@ -109,7 +118,7 @@ class Game {
         this.ene.push(enemy);
       }
     } else if (this.depth > -2000) {
-      for (let i = 0; i < 6; i++) {
+      for (let i = 0; i < 10; i++) {
         let enemy = null;
         if (i % 2 === 0) enemy = new Turtle(this, 700 + i * 50);
         else enemy = new Turtle(this, -1 * (700 + i * 50));
@@ -120,6 +129,13 @@ class Game {
         let enemy = null;
         if (i % 2 === 0) enemy = new Shark(this, 700 + i * 50);
         else enemy = new Shark(this, -1 * (700 + i * 50));
+        this.ene.push(enemy);
+      }
+    } else if (this.depth > -5000) {
+      for (let i = 0; i < 6; i++) {
+        let enemy = null;
+        if (i % 2 === 0) enemy = new Whale(this, 700 + i * 50);
+        else enemy = new Whale(this, -1 * (700 + i * 50));
         this.ene.push(enemy);
       }
     }

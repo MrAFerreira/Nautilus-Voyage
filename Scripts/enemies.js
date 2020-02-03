@@ -83,3 +83,25 @@ class Shark extends Enemy {
     this.game.context.restore();
   }
 }
+
+class Whale extends Enemy {
+  constructor(game, posX) {
+    super(game, posX);
+    this.game = game;
+    this.positionX = posX;
+    this.positionY = Math.random() * this.game.$canvas.height;
+    this.height = 70;
+    this.width = 120;
+    this.speedY = 0;
+    this.speedX = 1;
+  }
+
+  paint() {
+    this.game.context.save();
+    this.game.context.beginPath();
+    this.game.context.fillStyle = 'darkslategrey';
+    this.game.context.fillRect(this.positionX, this.positionY, this.width, this.height);
+    this.game.context.closePath();
+    this.game.context.restore();
+  }
+}
