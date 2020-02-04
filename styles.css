@@ -4,6 +4,12 @@ body {
   align-items: center;
 }
 
+/* #title-screen{
+  width: max-content;
+  height: max-content;
+  background-color: aqua;
+}
+ */
 section {
   display: flex;
   justify-content: center;

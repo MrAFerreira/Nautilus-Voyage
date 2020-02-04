@@ -140,16 +140,12 @@ class Game {
       }
     }
   }
-  /*  enemyLoop() {
-    const enemy = new Enemy(this);
-    if (this.enemies.length > 50) {
-      this.enemies.pop();
-    }
-  } */
 
   runLogic() {
     this.player.newPos();
     this.player.oxygenLevels();
+    this.player.checkCollisions();
+    this.scoreboard.checkScore();
 
     for (let enemy of this.ene) {
       if (this.ene.indexOf(enemy) % 2 === 0) {
@@ -159,9 +155,4 @@ class Game {
       }
     }
   }
-  // this.enemy.incomingLeft();
 }
-
-/* setInterval(() => {
-  game.enemyLoop();
-}, 5000); */

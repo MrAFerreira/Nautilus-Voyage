@@ -5,8 +5,8 @@ class Player {
     this.height = 35;
     this.positionX = 350;
     this.positionY = 200;
-    this.speedX = 0;
-    this.speedY = 0;
+    this.speedX = 1;
+    this.speedY = 1;
     this.gravity = 1;
     this.gravitySpeed = 0.001;
     this.oxygen = 100;
@@ -23,7 +23,7 @@ class Player {
 
   checkBoundaries() {
     if (this.positionY <= 50) {
-      this.positionY = 50;
+      this.positionY = 51;
       this.speedY = 0;
     }
 
@@ -36,6 +36,19 @@ class Player {
     }
     if (this.positionX >= 670 - this.width) {
       this.positionX = 670 - this.width;
+    }
+  }
+
+  checkCollisions() {
+    for (let enemy of this.game.ene) {
+      if (
+        this.positionX + this.width > enemy.positionX &&
+        this.positionX < enemy.positionX + enemy.width &&
+        this.positionY + this.height > enemy.positionY &&
+        this.positionY < enemy.positionY + enemy.height
+      ) {
+        this.oxygen -= 0.2;
+      }
     }
   }
 
