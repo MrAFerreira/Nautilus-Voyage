@@ -83,18 +83,27 @@ class Shark extends Enemy {
     this.positionX = posX;
     this.positionY = Math.random() * this.game.$canvas.height;
     this.height = 40;
-    this.width = 60;
+    this.width = 100;
     this.speedY = 0;
     this.speedX = 3;
   }
 
   paint() {
-    this.game.context.save();
+    let sharkImageUrl;
+    if (this.direction === 'east') {
+      sharkImageUrl = 'imgs/shark_east.png';
+    } else {
+      sharkImageUrl = 'imgs/shark_west.png';
+    }
+    let sharkImage = new Image();
+    sharkImage.src = sharkImageUrl;
+    this.game.context.drawImage(sharkImage, this.positionX, this.positionY);
+    /* this.game.context.save();
     this.game.context.beginPath();
     this.game.context.fillStyle = 'grey';
     this.game.context.fillRect(this.positionX, this.positionY, this.width, this.height);
     this.game.context.closePath();
-    this.game.context.restore();
+    this.game.context.restore(); */
   }
 }
 
@@ -104,18 +113,28 @@ class Whale extends Enemy {
     this.game = game;
     this.positionX = posX;
     this.positionY = Math.random() * this.game.$canvas.height;
-    this.height = 70;
-    this.width = 120;
+    this.height = 100;
+    this.width = 300;
     this.speedY = 0;
     this.speedX = 1;
   }
 
   paint() {
-    this.game.context.save();
+    let whaleImageUrl;
+    if (this.direction === 'east') {
+      whaleImageUrl = 'imgs/whale_east.png';
+    } else {
+      whaleImageUrl = 'imgs/whale_west.png';
+    }
+    let whaleImage = new Image();
+    whaleImage.src = whaleImageUrl;
+    this.game.context.drawImage(whaleImage, this.positionX, this.positionY);
+
+    /* this.game.context.save();
     this.game.context.beginPath();
     this.game.context.fillStyle = 'darkslategrey';
     this.game.context.fillRect(this.positionX, this.positionY, this.width, this.height);
     this.game.context.closePath();
-    this.game.context.restore();
+    this.game.context.restore(); */
   }
 }
