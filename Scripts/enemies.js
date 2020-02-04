@@ -3,18 +3,19 @@ class Enemy {
     this.game = game;
     this.positionX = posX;
     this.positionY = Math.random() * this.game.$canvas.height;
-    this.height = 30;
+    this.height = 15;
     this.width = 30;
     this.speedY = 0;
     this.speedX = 2;
+    this.direction;
   }
 
   incomingLeft() {
-    if (this.game.player.positionY >= 600) {
+    if (this.game.player.positionY >= 599) {
       this.speedY += this.game.player.speedY * this.game.player.gravitySpeed;
       this.positionY -= this.speedY;
     }
-
+    this.direction = 'west';
     this.positionX += this.speedX;
   }
 
@@ -23,20 +24,30 @@ class Enemy {
   }
 
   incomingRight() {
-    if (this.game.player.positionY >= 600) {
+    if (this.game.player.positionY >= 599) {
       this.speedY += this.game.player.speedY * this.game.player.gravitySpeed;
       this.positionY -= this.speedY;
     }
+    this.direction = 'east';
     this.positionX -= this.speedX;
   }
 
   paint() {
-    this.game.context.save();
+    let fishImageUrl;
+    if (this.direction === 'east') {
+      fishImageUrl = 'imgs/clown_fish_west.png';
+    } else {
+      fishImageUrl = 'imgs/clown_fish_east.png';
+    }
+    let fishImage = new Image();
+    fishImage.src = fishImageUrl;
+    this.game.context.drawImage(fishImage, this.positionX, this.positionY);
+    /* this.game.context.save();
     this.game.context.beginPath();
     this.game.context.fillStyle = 'red';
     this.game.context.fillRect(this.positionX, this.positionY, this.width, this.height);
     this.game.context.closePath();
-    this.game.context.restore();
+    this.game.context.restore(); */
   }
 }
 
@@ -47,18 +58,21 @@ class Turtle extends Enemy {
     this.positionX = posX;
     this.positionY = Math.random() * this.game.$canvas.height;
     this.height = 30;
-    this.width = 50;
+    this.width = 60;
     this.speedY = 0;
     this.speedX = 1;
   }
 
   paint() {
-    this.game.context.save();
-    this.game.context.beginPath();
-    this.game.context.fillStyle = 'green';
-    this.game.context.fillRect(this.positionX, this.positionY, this.width, this.height);
-    this.game.context.closePath();
-    this.game.context.restore();
+    let turtleImageUrl;
+    if (this.direction === 'east') {
+      turtleImageUrl = 'imgs/turtle_east.png';
+    } else {
+      turtleImageUrl = 'imgs/turtle_west.png';
+    }
+    let turtleImage = new Image();
+    turtleImage.src = turtleImageUrl;
+    this.game.context.drawImage(turtleImage, this.positionX, this.positionY);
   }
 }
 

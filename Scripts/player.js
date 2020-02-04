@@ -1,22 +1,23 @@
 class Player {
   constructor(game) {
     this.game = game;
-    this.width = 50;
+    this.width = 70;
     this.height = 35;
     this.positionX = 350;
     this.positionY = 200;
-    this.speedX = 1;
-    this.speedY = 1;
+    this.speedX = 0;
+    this.speedY = 0;
     this.gravity = 1;
     this.gravitySpeed = 0.001;
     this.oxygen = 100;
+    this.direction = 'east';
   }
 
   reset() {
     this.positionX = 350;
     this.positionY = 200;
-    this.speedX = 1;
-    this.speedY = 1;
+    this.speedX = 0;
+    this.speedY = 0;
     this.oxygen = 100;
   }
 
@@ -68,15 +69,37 @@ class Player {
     }
   }
 
-  paint() {
-    this.game.context.fillRect(this.positionX, this.positionY, this.width, this.height);
-  }
-
   oxygenLevels() {
     if (this.game.depth > -1000) {
       this.oxygen -= 0.005;
     } else if (this.game.depth > -3000) {
       this.oxygen -= 0.01;
     }
+  }
+
+  runLogic() {
+    this.newPos();
+    this.checkBoundaries();
+    this.checkCollisions();
+    this.checkDeath();
+    this.oxygenLevels();
+  }
+
+  paint() {
+    let playerImageUrl;
+    if (this.game.player.direction === 'east') {
+      playerImageUrl = './imgs/yellow_submarine_east.png';
+    } else {
+      playerImageUrl = './imgs/yellow_submarine.png';
+    }
+
+    let playerImage = new Image();
+    playerImage.src = playerImageUrl;
+
+    //playerImage.addEventListener('load', () => {
+    this.game.context.drawImage(playerImage, this.positionX, this.positionY);
+
+    //});
+    //this.game.context.fillRect(this.positionX, this.positionY, this.width, this.height);
   }
 }

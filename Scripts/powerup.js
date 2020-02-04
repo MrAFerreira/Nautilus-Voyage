@@ -20,12 +20,16 @@ class OxygenTank extends Powerup {
 
   paint() {
     for (let tank of this.tanksArray) {
-      this.game.context.save();
+      let tankImageUrl = '/imgs/oxygen_tank.png';
+      let tankImage = new Image();
+      tankImage.src = tankImageUrl;
+      this.game.context.drawImage(tankImage, tank.positionX, tank.positionY);
+      /* this.game.context.save();
       this.game.context.beginPath();
       this.game.context.fillStyle = 'yellow';
       this.game.context.fillRect(tank.positionX, tank.positionY, tank.width, tank.height);
       this.game.context.closePath();
-      this.game.context.restore();
+      this.game.context.restore(); */
     }
   }
 

@@ -29,6 +29,7 @@ class Game {
     this.player.reset();
     this.depth = 0;
     this.ene = [];
+    this.oxygenPowerup.tanksArray = [];
     this.clearScreen();
     this.gameIsRunning = !this.gameIsRunning;
     this.start();
@@ -74,10 +75,8 @@ class Game {
     this.context.fillStyle = gradient;
     if (this.player.positionY >= 550) {
       this.depth--;
-      console.log(this.depth);
     } else if (this.player.positionY <= 100 && this.depth <= 0) {
       this.depth += 1;
-      console.log(this.depth);
     }
     this.context.fillRect(0, 0, this.$canvas.width, this.$canvas.height);
     this.context.restore();
@@ -133,10 +132,7 @@ class Game {
   }
 
   runLogic() {
-    this.player.newPos();
-    this.player.oxygenLevels();
-    this.player.checkCollisions();
-    this.player.checkDeath();
+    this.player.runLogic();
     this.oxygenPowerup.runLogic();
     this.scoreboard.checkScore();
 

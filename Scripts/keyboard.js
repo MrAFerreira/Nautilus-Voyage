@@ -2,7 +2,6 @@ class Controller {
   constructor(game) {
     this.game = game;
     this.player = this.game.player;
-    this.$buttonStart = document.getElementById('btn-start');
     this.$buttonReset = document.getElementById('btn-reset');
     this.$buttonPause = document.getElementById('btn-pause');
     this.$titleButton = document.getElementById('title-button');
@@ -15,6 +14,8 @@ class Controller {
     this.$titleButton.addEventListener('click', () => {
       this.$titleScreen.classList.toggle('fade-out');
       this.$gameOverScreen.classList.toggle('fade-out');
+      this.game.gameIsRunning = true;
+      this.game.start();
     });
 
     this.$tryAgainButton.addEventListener('click', () => {
@@ -23,19 +24,17 @@ class Controller {
       this.game.reset();
     });
 
-    this.$buttonStart.addEventListener('click', () => {
+    /* this.$buttonStart.addEventListener('click', () => {
       if (!this.game.gameIsRunning) {
-        this.game.gameStarted = true;
         this.game.gameIsRunning = true;
         this.game.start();
       }
       console.log('Start clicked');
-    });
+    }); */
 
     this.$buttonReset.addEventListener('click', () => {
-      if (!this.game.gameIsRunning) {
-        this.game.start();
-      }
+      this.game.reset();
+      this.game.gameIsRunning = !this.game.gameIsRunning;
     });
 
     this.$buttonPause.addEventListener('click', () => {
@@ -50,6 +49,7 @@ class Controller {
           if (this.player.speedY > -2) {
             this.player.speedY += -0.5;
           }
+
           break;
         case 's':
           if (this.player.speedY < 2) {
@@ -60,11 +60,13 @@ class Controller {
           if (this.player.speedX > -2) {
             this.player.speedX += -0.5;
           }
+          this.player.direction = 'west';
           break;
         case 'd':
           if (this.player.speedX < 2) {
             this.player.speedX += 0.5;
           }
+          this.player.direction = 'east';
           break;
       }
     });
