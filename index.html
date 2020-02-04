@@ -9,6 +9,16 @@
   </head>
   <body>
     <section>
+      <div id="title-screen">
+        <h1 id="game-title">Nautilus Voyage</h1>
+        <h6 id="title-button">Press to start</h6>
+      </div>
+      <div id="game-over-screen">
+        <h1 id="game-over">Game Over</h1>
+        <h6 id="current-score">Score: <span> 0</span></h6>
+        <h6 id="highscore">Highscore: <span> 0</span></h6>
+        <h6 id="try-again-button">Try again?</h6>
+      </div>
       <canvas width="700" height="700"></canvas>
       <aside>
         <h1>Current Depth: <span id="current-depth">0</span></h1>
@@ -20,8 +30,8 @@
       </aside>
     </section>
 
-    <script src="Scripts/scoreboard.js"></script>
     <script src="Scripts/keyboard.js"></script>
+    <script src="Scripts/scoreboard.js"></script>
     <script src="Scripts/enemies.js"></script>
     <script src="Scripts/player.js"></script>
     <script src="Scripts/game.js"></script>

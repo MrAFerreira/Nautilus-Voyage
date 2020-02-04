@@ -2,6 +2,45 @@ class Controller {
   constructor(game) {
     this.game = game;
     this.player = this.game.player;
+    this.$buttonStart = document.getElementById('btn-start');
+    this.$buttonReset = document.getElementById('btn-reset');
+    this.$buttonPause = document.getElementById('btn-pause');
+    this.$titleButton = document.getElementById('title-button');
+    this.$titleScreen = document.getElementById('title-screen');
+    this.$gameOverScreen = document.getElementById('game-over-screen');
+    this.$tryAgainButton = document.getElementById('try-again-button');
+  }
+
+  setControlBindings() {
+    this.$titleButton.addEventListener('click', () => {
+      this.$titleScreen.classList.toggle('fade-out');
+      this.$gameOverScreen.classList.toggle('fade-out');
+    });
+
+    this.$tryAgainButton.addEventListener('click', () => {
+      this.$gameOverScreen.classList.remove('fade-in');
+      this.$gameOverScreen.classList.toggle('fade-out');
+      this.game.reset();
+    });
+
+    this.$buttonStart.addEventListener('click', () => {
+      if (!this.game.gameIsRunning) {
+        this.game.gameStarted = true;
+        this.game.gameIsRunning = true;
+        this.game.start();
+      }
+      console.log('Start clicked');
+    });
+
+    this.$buttonReset.addEventListener('click', () => {
+      if (!this.game.gameIsRunning) {
+        this.game.start();
+      }
+    });
+
+    this.$buttonPause.addEventListener('click', () => {
+      this.game.pause();
+    });
   }
 
   keyboardEventListeners() {

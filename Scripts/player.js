@@ -10,7 +10,14 @@ class Player {
     this.gravity = 1;
     this.gravitySpeed = 0.001;
     this.oxygen = 100;
-    //this.keyboardEventListeners();
+  }
+
+  reset() {
+    this.positionX = 350;
+    this.positionY = 200;
+    this.speedX = 1;
+    this.speedY = 1;
+    this.oxygen = 100;
   }
 
   newPos() {
@@ -36,6 +43,15 @@ class Player {
     }
     if (this.positionX >= 670 - this.width) {
       this.positionX = 670 - this.width;
+    }
+  }
+
+  checkDeath() {
+    if (this.oxygen <= 0) {
+      this.game.gameIsRunning = false;
+      this.game.scoreboard.updateScore();
+      this.game.controller.$gameOverScreen.classList.remove('fade-out');
+      this.game.controller.$gameOverScreen.classList.toggle('fade-in');
     }
   }
 

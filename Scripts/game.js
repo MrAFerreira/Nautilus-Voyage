@@ -10,7 +10,8 @@ class Game {
     this.ene = [];
     this.gameStarted = false;
     this.gameIsRunning = false;
-    this.setControlBindings();
+    this.gameOver = false;
+    this.controller.setControlBindings();
     /* for (let i = 0; i < 50; i++) {
       let enemy = null;
       if (i % 2 === 0) enemy = new Enemy(this, 700 + i * 50);
@@ -19,33 +20,17 @@ class Game {
     } */
   }
 
-  setControlBindings() {
-    const $buttonStart = document.getElementById('btn-start');
-    const $buttonReset = document.getElementById('btn-reset');
-    const $buttonPause = document.getElementById('btn-pause');
-
-    $buttonStart.addEventListener('click', () => {
-      if (!this.gameIsRunning) {
-        this.gameStarted = true;
-        this.gameIsRunning = true;
-        this.start();
-      }
-      console.log('Start clicked');
-    });
-
-    $buttonReset.addEventListener('click', () => {
-      if (!this.gameIsRunning) {
-        this.start();
-      }
-    });
-
-    $buttonPause.addEventListener('click', () => {
-      this.pause();
-    });
-  }
-
   start() {
     this.loop();
+  }
+
+  reset() {
+    this.player.reset();
+    this.depth = 0;
+    this.ene = [];
+    this.clearScreen();
+    this.gameIsRunning = !this.gameIsRunning;
+    this.start();
   }
 
   pause() {
@@ -65,7 +50,10 @@ class Game {
     game.player.checkBoundaries();
     if (this.gameIsRunning) {
       window.requestAnimationFrame(timestamp => this.loop(timestamp));
-    }
+    } /* else if (this.gameOver) {
+      this.controller.$gameOverScreen.classList.toggle('fade-in');
+      console.log(this.gameOver);
+    } */
   }
 
   background() {
@@ -145,6 +133,7 @@ class Game {
     this.player.newPos();
     this.player.oxygenLevels();
     this.player.checkCollisions();
+    this.player.checkDeath();
     this.scoreboard.checkScore();
 
     for (let enemy of this.ene) {
