@@ -5,6 +5,7 @@ class Game {
     this.player = new Player(this);
     this.controller = new Controller(this);
     this.scoreboard = new Scoreboard(this);
+    this.oxygenPowerup = new OxygenTank(this, -100);
     this.controller.keyboardEventListeners();
     this.depth = 0;
     this.ene = [];
@@ -91,6 +92,8 @@ class Game {
     this.clearScreen();
     this.background();
     this.player.paint();
+    this.oxygenPowerup.paint();
+
     this.scoreboard.paint();
     for (let enemy of this.ene) {
       enemy.paint();
@@ -134,6 +137,7 @@ class Game {
     this.player.oxygenLevels();
     this.player.checkCollisions();
     this.player.checkDeath();
+    this.oxygenPowerup.runLogic();
     this.scoreboard.checkScore();
 
     for (let enemy of this.ene) {
