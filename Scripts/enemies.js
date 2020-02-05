@@ -8,6 +8,7 @@ class Enemy {
     this.speedY = 0;
     this.speedX = 2;
     this.direction;
+    this.ene = [];
   }
 
   incomingLeft() {
@@ -32,6 +33,38 @@ class Enemy {
     this.positionX -= this.speedX;
   }
 
+  enemyLoop() {
+    if (this.game.depth > -1000) {
+      for (let i = 0; i < 6; i++) {
+        let enemy = null;
+        if (i % 2 === 0) enemy = new Enemy(this.game, 700 + i * 50);
+        else enemy = new Enemy(this.game, -1 * (700 + i * 50));
+        this.ene.push(enemy);
+      }
+    } else if (this.game.depth > -2000) {
+      for (let i = 0; i < 10; i++) {
+        let enemy = null;
+        if (i % 2 === 0) enemy = new Turtle(this.game, 700 + i * 50);
+        else enemy = new Turtle(this.game, -1 * (700 + i * 50));
+        this.ene.push(enemy);
+      }
+    } else if (this.game.depth > -3000) {
+      for (let i = 0; i < 6; i++) {
+        let enemy = null;
+        if (i % 2 === 0) enemy = new Shark(this.game, 700 + i * 50);
+        else enemy = new Shark(this.game, -1 * (700 + i * 50));
+        this.ene.push(enemy);
+      }
+    } else if (this.game.depth > -5000) {
+      for (let i = 0; i < 6; i++) {
+        let enemy = null;
+        if (i % 2 === 0) enemy = new Whale(this.game, 700 + i * 50);
+        else enemy = new Whale(this.game, -1 * (700 + i * 50));
+        this.ene.push(enemy);
+      }
+    }
+  }
+
   paint() {
     let fishImageUrl;
     if (this.direction === 'east') {
@@ -42,12 +75,6 @@ class Enemy {
     let fishImage = new Image();
     fishImage.src = fishImageUrl;
     this.game.context.drawImage(fishImage, this.positionX, this.positionY);
-    /* this.game.context.save();
-    this.game.context.beginPath();
-    this.game.context.fillStyle = 'red';
-    this.game.context.fillRect(this.positionX, this.positionY, this.width, this.height);
-    this.game.context.closePath();
-    this.game.context.restore(); */
   }
 }
 
@@ -61,6 +88,7 @@ class Turtle extends Enemy {
     this.width = 60;
     this.speedY = 0;
     this.speedX = 1;
+    this.ene = [];
   }
 
   paint() {
@@ -86,6 +114,7 @@ class Shark extends Enemy {
     this.width = 100;
     this.speedY = 0;
     this.speedX = 3;
+    this.ene = [];
   }
 
   paint() {
@@ -98,12 +127,6 @@ class Shark extends Enemy {
     let sharkImage = new Image();
     sharkImage.src = sharkImageUrl;
     this.game.context.drawImage(sharkImage, this.positionX, this.positionY);
-    /* this.game.context.save();
-    this.game.context.beginPath();
-    this.game.context.fillStyle = 'grey';
-    this.game.context.fillRect(this.positionX, this.positionY, this.width, this.height);
-    this.game.context.closePath();
-    this.game.context.restore(); */
   }
 }
 
@@ -117,6 +140,7 @@ class Whale extends Enemy {
     this.width = 300;
     this.speedY = 0;
     this.speedX = 1;
+    this.ene = [];
   }
 
   paint() {
@@ -129,12 +153,5 @@ class Whale extends Enemy {
     let whaleImage = new Image();
     whaleImage.src = whaleImageUrl;
     this.game.context.drawImage(whaleImage, this.positionX, this.positionY);
-
-    /* this.game.context.save();
-    this.game.context.beginPath();
-    this.game.context.fillStyle = 'darkslategrey';
-    this.game.context.fillRect(this.positionX, this.positionY, this.width, this.height);
-    this.game.context.closePath();
-    this.game.context.restore(); */
   }
 }

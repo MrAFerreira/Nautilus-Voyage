@@ -57,7 +57,7 @@ class Player {
   }
 
   checkCollisions() {
-    for (let enemy of this.game.ene) {
+    for (let enemy of this.game.enemy.ene) {
       if (
         this.positionX + this.width > enemy.positionX &&
         this.positionX < enemy.positionX + enemy.width &&

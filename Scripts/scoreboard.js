@@ -33,7 +33,6 @@ class Scoreboard {
 
   runLogic() {
     this.checkScore();
-    this.updateScore();
     this.checkWin();
   }
 
