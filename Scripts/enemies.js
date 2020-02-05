@@ -20,9 +20,9 @@ class Enemy {
     this.positionX += this.speedX;
   }
 
-  setPosX(posX) {
+  /* setPosX(posX) {
     this.positionX = posX;
-  }
+  } */
 
   incomingRight() {
     if (this.game.player.positionY >= 599) {
