@@ -8,7 +8,7 @@ class Player {
     this.speedX = 0;
     this.speedY = 0;
     this.gravity = 1;
-    this.gravitySpeed = 0.001;
+    this.gravitySpeed = 0.0005;
     this.oxygen = 100;
     this.direction = 'east';
   }
@@ -22,8 +22,8 @@ class Player {
   }
 
   newPos() {
-    let newPositionY = this.positionY + this.speedY;
-    let newPositionX = this.positionX + this.speedX;
+    //let newPositionY = this.positionY + this.speedY;
+    //let newPositionX = this.positionX + this.speedX;
     this.speedY += this.gravitySpeed;
     this.positionY += this.speedY;
     this.positionX += this.speedX;
@@ -49,8 +49,8 @@ class Player {
 
   checkDeath() {
     if (this.oxygen <= 0) {
-      this.game.gameIsRunning = false;
       this.game.scoreboard.updateScore();
+      this.game.gameIsRunning = false;
       this.game.controller.$gameOverScreen.classList.remove('fade-out');
       this.game.controller.$gameOverScreen.classList.toggle('fade-in');
     }
@@ -65,6 +65,7 @@ class Player {
         this.positionY < enemy.positionY + enemy.height
       ) {
         this.oxygen -= 0.2;
+        this.game.hitSound.play();
       }
     }
   }

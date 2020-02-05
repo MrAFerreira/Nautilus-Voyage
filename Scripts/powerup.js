@@ -49,6 +49,7 @@ class OxygenTank extends Powerup {
         tank.positionY + tank.height > this.game.player.positionY &&
         tank.positionY < this.game.player.positionY + this.game.player.height
       ) {
+        this.game.powerupSound.play();
         this.game.player.oxygen += 10;
         this.tanksArray.splice(this.tanksArray.indexOf(tank), 1);
       }

@@ -13,10 +13,14 @@ class Game {
     this.gameIsRunning = false;
     this.gameOver = false;
     this.controller.setControlBindings();
+    this.mainTheme = new Audio('audio/ambient2(Nautilus).mp3');
+    this.hitSound = new Audio('audio/qubodupImpactWood.ogg');
+    this.powerupSound = new Audio('audio/SFX_Powerup_01.wav');
   }
 
   start() {
     this.loop();
+    this.mainTheme.play();
   }
 
   reset() {
@@ -62,7 +66,7 @@ class Game {
     gradient.addColorStop(0.75, 'midnightblue');
     gradient.addColorStop(1, 'black');
     this.context.fillStyle = gradient;
-    if (this.player.positionY >= 550) {
+    if (this.player.positionY >= 101) {
       this.depth--;
     } else if (this.player.positionY <= 100 && this.depth <= 0) {
       this.depth += 1;

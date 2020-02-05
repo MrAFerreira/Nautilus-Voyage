@@ -46,14 +46,25 @@ class Controller {
     });
 
     this.$infoButton.addEventListener('click', () => {
+      console.log('info clicked');
       if (this.game.gameIsRunning) {
         this.game.pause();
+        this.$infoScreen.classList.remove('fade-out');
         this.$infoScreen.classList.toggle('fade-in');
       } else {
         this.game.pause();
         this.$infoScreen.classList.remove('fade-in');
         this.$infoScreen.classList.toggle('fade-out');
       }
+      /* if (this.game.gameIsRunning) {
+        this.game.gameIsRunning = !this.game.gameIsRunning;
+        this.$infoScreen.classList.toggle('fade-in');
+      } else {
+        this.game.gameIsRunning = true;
+        this.game.start();
+        this.$infoScreen.classList.remove('fade-in');
+        this.$infoScreen.classList.toggle('fade-out');
+      } */
     });
   }
 
