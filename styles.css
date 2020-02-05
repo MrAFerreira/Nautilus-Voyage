@@ -2,13 +2,16 @@
   font-family: 'VCR';
   src: url('/font/VCR_OSD_MONO_1.001.ttf') format('truetype');
 }
+* {
+  box-sizing: border-box;
+}
 
 body {
-  box-sizing: border-box;
   display: flex;
   justify-content: center;
   align-items: center;
   font-family: VCR, Arial, Helvetica, sans-serif;
+  /*background: linear-gradient(#00d4ff, #090979);*/
 }
 
 section {
@@ -16,6 +19,11 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+canvas {
+  border-radius: 20px;
+  border: 5px solid rgb(172, 107, 0);
 }
 
 /*-------------- Title Screen ---------- */

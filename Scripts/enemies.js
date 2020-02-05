@@ -12,7 +12,7 @@ class Enemy {
   }
 
   incomingLeft() {
-    if (this.game.player.positionY >= 599) {
+    if (this.game.player.positionY >= 550) {
       this.speedY += this.game.player.speedY * this.game.player.gravitySpeed;
       this.positionY -= this.speedY;
     }
@@ -55,8 +55,8 @@ class Enemy {
         else enemy = new Shark(this.game, -1 * (700 + i * 50));
         this.ene.push(enemy);
       }
-    } else if (this.game.depth > -5000) {
-      for (let i = 0; i < 6; i++) {
+    } else if (this.game.depth > -6000) {
+      for (let i = 0; i < 4; i++) {
         let enemy = null;
         if (i % 2 === 0) enemy = new Whale(this.game, 700 + i * 50);
         else enemy = new Whale(this.game, -1 * (700 + i * 50));

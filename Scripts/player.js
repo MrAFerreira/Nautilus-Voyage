@@ -93,14 +93,8 @@ class Player {
     } else {
       playerImageUrl = './imgs/yellow_submarine.png';
     }
-
     let playerImage = new Image();
     playerImage.src = playerImageUrl;
-
-    //playerImage.addEventListener('load', () => {
     this.game.context.drawImage(playerImage, this.positionX, this.positionY);
-
-    //});
-    //this.game.context.fillRect(this.positionX, this.positionY, this.width, this.height);
   }
 }

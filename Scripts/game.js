@@ -46,7 +46,7 @@ class Game {
     game.context.clearRect(0, 0, $canvas.width, $canvas.height);
     game.paint();
     game.runLogic();
-    game.player.checkBoundaries();
+    //game.player.checkBoundaries();
     if (this.gameIsRunning) {
       window.requestAnimationFrame(timestamp => this.loop(timestamp));
     }
@@ -85,7 +85,6 @@ class Game {
     this.background();
     this.player.paint();
     this.oxygenPowerup.paint();
-
     this.scoreboard.paint();
     for (let enemy of this.enemy.ene) {
       enemy.paint();
