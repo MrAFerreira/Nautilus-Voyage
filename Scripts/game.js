@@ -134,7 +134,7 @@ class Game {
   runLogic() {
     this.player.runLogic();
     this.oxygenPowerup.runLogic();
-    this.scoreboard.checkScore();
+    this.scoreboard.runLogic();
 
     for (let enemy of this.ene) {
       if (this.ene.indexOf(enemy) % 2 === 0) {

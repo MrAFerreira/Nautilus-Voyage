@@ -7,30 +7,31 @@ class Controller {
     this.$titleButton = document.getElementById('title-button');
     this.$titleScreen = document.getElementById('title-screen');
     this.$gameOverScreen = document.getElementById('game-over-screen');
-    this.$tryAgainButton = document.getElementById('try-again-button');
+    this.$winScreen = document.getElementById('win-screen');
+    this.$tryAgainButtonOver = document.querySelector('#game-over-screen .try-again-button');
+    this.$tryAgainButtonWin = document.querySelector('#win-screen .try-again-button');
   }
 
   setControlBindings() {
     this.$titleButton.addEventListener('click', () => {
       this.$titleScreen.classList.toggle('fade-out');
       this.$gameOverScreen.classList.toggle('fade-out');
+      this.$winScreen.classList.toggle('fade-out');
       this.game.gameIsRunning = true;
       this.game.start();
     });
 
-    this.$tryAgainButton.addEventListener('click', () => {
+    this.$tryAgainButtonOver.addEventListener('click', () => {
       this.$gameOverScreen.classList.remove('fade-in');
       this.$gameOverScreen.classList.toggle('fade-out');
       this.game.reset();
     });
 
-    /* this.$buttonStart.addEventListener('click', () => {
-      if (!this.game.gameIsRunning) {
-        this.game.gameIsRunning = true;
-        this.game.start();
-      }
-      console.log('Start clicked');
-    }); */
+    this.$tryAgainButtonWin.addEventListener('click', () => {
+      this.$winScreen.classList.remove('fade-in');
+      this.$winScreen.classList.toggle('fade-out');
+      this.game.reset();
+    });
 
     this.$buttonReset.addEventListener('click', () => {
       this.game.reset();

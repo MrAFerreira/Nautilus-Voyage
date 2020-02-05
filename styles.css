@@ -11,7 +11,7 @@ body {
   right: 0;
   width: 100%;
   height: 100%;
-  z-index: 3;
+  z-index: 4;
   background: linear-gradient(#00d4ff, #090979);
   display: flex;
   flex-direction: column;
@@ -58,7 +58,7 @@ body {
   right: 0;
   width: 100%;
   height: 100%;
-  z-index: 2;
+  z-index: 3;
   background: black;
   display: flex;
   flex-direction: column;
@@ -71,7 +71,7 @@ body {
   font-size: 7em;
 }
 
-#try-again-button {
+.try-again-button {
   text-decoration: none;
   position: relative;
   border: none;
@@ -80,7 +80,7 @@ body {
   font-size: 2em;
 }
 
-#try-again-button:before {
+.try-again-button:before {
   color: white;
   content: '';
   position: absolute;
@@ -94,13 +94,38 @@ body {
   transition: all 0.4s ease-in-out 0s;
 }
 
-#try-again-button:hover:before {
+.try-again-button:hover:before {
   visibility: visible;
   transform: scaleX(1);
 }
 
 #current-score,
 #highscore {
+  margin: 10px 0;
+  color: white;
+  font-size: 1.5em;
+}
+
+#win-screen {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  background: linear-gradient(#00d4ff, #090979);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#win-title {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 7em;
+}
+
+#current-score-win {
   margin: 10px 0;
   color: white;
   font-size: 1.5em;
