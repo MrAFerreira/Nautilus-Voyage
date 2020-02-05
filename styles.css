@@ -74,6 +74,18 @@ canvas {
   transform: scaleX(1);
 }
 
+#difficulty-levels {
+  width: 500px;
+  display: flex;
+  justify-content: space-around;
+  font-size: 2em;
+  color: white;
+}
+
+#difficulty-levels h6:hover {
+  cursor: pointer;
+}
+
 /*---------------------------Game Over Screen --------------------------*/
 
 #game-over-screen {

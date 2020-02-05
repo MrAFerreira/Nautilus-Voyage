@@ -1,6 +1,6 @@
 const $canvas = document.querySelector('canvas');
 const game = new Game($canvas);
 
-setInterval(() => {
+/* setInterval(() => {
   game.enemy.enemyLoop();
-}, 3000);
+}, game.difficulty); */

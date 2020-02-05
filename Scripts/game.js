@@ -11,7 +11,8 @@ class Game {
     this.depth = 0;
     this.gameStarted = false;
     this.gameIsRunning = false;
-    this.gameOver = false;
+    this.difficulty = 1000;
+    //this.gameOver = false;
     this.controller.setControlBindings();
     this.mainTheme = new Audio('audio/ambient2(Nautilus).mp3');
     this.hitSound = new Audio('audio/qubodupImpactWood.ogg');
@@ -19,6 +20,7 @@ class Game {
   }
 
   start() {
+    this.enemyTimer();
     this.loop();
     this.mainTheme.play();
   }
@@ -30,7 +32,7 @@ class Game {
     this.oxygenPowerup.tanksArray = [];
     this.clearScreen();
     this.gameIsRunning = !this.gameIsRunning;
-    this.start();
+    this.loop();
   }
 
   pause() {
@@ -38,7 +40,7 @@ class Game {
       this.gameIsRunning = !this.gameIsRunning;
     } else {
       this.gameIsRunning = !this.gameIsRunning;
-      this.start();
+      this.loop();
     }
   }
 
@@ -102,6 +104,14 @@ class Game {
       } else {
         enemy.incomingLeft();
       }
+    }
+  }
+
+  enemyTimer() {
+    if (this.gameIsRunning) {
+      setInterval(() => {
+        this.enemy.enemyLoop();
+      }, this.difficulty);
     }
   }
 }

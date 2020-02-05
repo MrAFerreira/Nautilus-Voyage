@@ -12,16 +12,44 @@ class Controller {
     this.$infoButton = document.getElementById('btn-info');
     this.$tryAgainButtonOver = document.querySelector('#game-over-screen .try-again-button');
     this.$tryAgainButtonWin = document.querySelector('#win-screen .try-again-button');
+    this.$difficultyLevels = document.getElementById('difficulty-levels');
+    this.$easyButton = document.getElementById('btn-easy');
+    this.$normalButton = document.getElementById('btn-normal');
+    this.$hardButton = document.getElementById('btn-hard');
+  }
+
+  changeScreens() {
+    this.$titleScreen.classList.toggle('fade-out');
+    this.$gameOverScreen.classList.toggle('fade-out');
+    this.$winScreen.classList.toggle('fade-out');
+    this.$infoScreen.classList.toggle('fade-out');
+    this.game.gameIsRunning = true;
+    this.game.start();
   }
 
   setControlBindings() {
     this.$titleButton.addEventListener('click', () => {
-      this.$titleScreen.classList.toggle('fade-out');
-      this.$gameOverScreen.classList.toggle('fade-out');
-      this.$winScreen.classList.toggle('fade-out');
-      this.$infoScreen.classList.toggle('fade-out');
-      this.game.gameIsRunning = true;
-      this.game.start();
+      this.$titleButton.classList.toggle('fade-out');
+      this.$difficultyLevels.classList.remove('fade-out');
+      this.$difficultyLevels.classList.toggle('fade-in');
+    });
+
+    this.$easyButton.addEventListener('click', () => {
+      this.game.difficulty = 8000;
+      console.log(this.game.difficulty);
+      this.changeScreens();
+    });
+
+    this.$normalButton.addEventListener('click', () => {
+      this.game.difficulty = 5000;
+      console.log(this.game.difficulty);
+      this.changeScreens();
+    });
+
+    this.$hardButton.addEventListener('click', () => {
+      this.game.difficulty = 3000;
+      console.log(this.game.difficulty);
+      this.changeScreens();
     });
 
     this.$tryAgainButtonOver.addEventListener('click', () => {
@@ -56,15 +84,6 @@ class Controller {
         this.$infoScreen.classList.remove('fade-in');
         this.$infoScreen.classList.toggle('fade-out');
       }
-      /* if (this.game.gameIsRunning) {
-        this.game.gameIsRunning = !this.game.gameIsRunning;
-        this.$infoScreen.classList.toggle('fade-in');
-      } else {
-        this.game.gameIsRunning = true;
-        this.game.start();
-        this.$infoScreen.classList.remove('fade-in');
-        this.$infoScreen.classList.toggle('fade-out');
-      } */
     });
   }
 
