@@ -8,6 +8,8 @@ class Controller {
     this.$titleScreen = document.getElementById('title-screen');
     this.$gameOverScreen = document.getElementById('game-over-screen');
     this.$winScreen = document.getElementById('win-screen');
+    this.$infoScreen = document.getElementById('info-screen');
+    this.$infoButton = document.getElementById('btn-info');
     this.$tryAgainButtonOver = document.querySelector('#game-over-screen .try-again-button');
     this.$tryAgainButtonWin = document.querySelector('#win-screen .try-again-button');
   }
@@ -17,6 +19,7 @@ class Controller {
       this.$titleScreen.classList.toggle('fade-out');
       this.$gameOverScreen.classList.toggle('fade-out');
       this.$winScreen.classList.toggle('fade-out');
+      this.$infoScreen.classList.toggle('fade-out');
       this.game.gameIsRunning = true;
       this.game.start();
     });
@@ -40,6 +43,17 @@ class Controller {
 
     this.$buttonPause.addEventListener('click', () => {
       this.game.pause();
+    });
+
+    this.$infoButton.addEventListener('click', () => {
+      if (this.game.gameIsRunning) {
+        this.game.pause();
+        this.$infoScreen.classList.toggle('fade-in');
+      } else {
+        this.game.pause();
+        this.$infoScreen.classList.remove('fade-in');
+        this.$infoScreen.classList.toggle('fade-out');
+      }
     });
   }
 

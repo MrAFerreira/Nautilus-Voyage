@@ -30,7 +30,6 @@ class Game {
   }
 
   pause() {
-    console.log('Pause was clicked');
     if (this.gameIsRunning) {
       this.gameIsRunning = !this.gameIsRunning;
     } else {
