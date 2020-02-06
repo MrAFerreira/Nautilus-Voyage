@@ -25,12 +25,20 @@ class Enemy {
   } */
 
   incomingRight() {
-    if (this.game.player.positionY >= 599) {
+    if (this.game.player.positionY >= 550) {
       this.speedY += this.game.player.speedY * this.game.player.gravitySpeed;
       this.positionY -= this.speedY;
     }
     this.direction = 'east';
     this.positionX -= this.speedX;
+  }
+
+  incomingUp() {
+    /* if (this.game.player.positionY >= 550) {
+      this.speedY += this.game.player.speedY * this.game.player.gravitySpeed;
+      this.positionY -= this.speedY;
+    } */
+    this.positionY -= 3;
   }
 
   enemyLoop() {
@@ -55,6 +63,12 @@ class Enemy {
         else enemy = new Shark(this.game, -1 * (700 + i * 50));
         this.ene.push(enemy);
       }
+    } else if (this.game.depth > -4000) {
+      for (let i = 0; i < 6; i++) {
+        let enemy = null;
+        enemy = new Jellyfish(this.game, 700 + i * 50);
+        this.ene.push(enemy);
+      }
     } else if (this.game.depth > -6000) {
       for (let i = 0; i < 4; i++) {
         let enemy = null;
@@ -64,6 +78,15 @@ class Enemy {
       }
     }
   }
+
+  /* enemyLoopVertical() {
+    if (this.game.depth < -2000 && this.game.depth > -5500) {
+      for (let i = 0; i < 6; i++) {
+        let enemy = new Jellyfish(this.game, 700 + i * 50);
+        this.ene.push(enemy);
+      }
+    }
+  } */
 
   paint() {
     let fishImageUrl;
@@ -153,5 +176,28 @@ class Whale extends Enemy {
     let whaleImage = new Image();
     whaleImage.src = whaleImageUrl;
     this.game.context.drawImage(whaleImage, this.positionX, this.positionY);
+  }
+}
+
+class Jellyfish extends Enemy {
+  constructor(game, posX) {
+    super(game, posX);
+    this.game = game;
+    this.positionX = Math.random() * this.game.$canvas.width;
+    this.positionY = posX;
+    this.height = 30;
+    this.width = 15;
+    this.speedY = 2;
+    this.speedX = 0;
+    this.ene = [];
+  }
+
+  paint() {
+    this.game.context.save();
+    this.game.context.beginPath();
+    this.game.context.fillStyle = 'white';
+    this.game.context.fillRect(this.positionX, this.positionY, this.width, this.height);
+    this.game.context.closePath();
+    this.game.context.restore();
   }
 }

@@ -99,7 +99,9 @@ class Game {
     this.scoreboard.runLogic();
 
     for (let enemy of this.enemy.ene) {
-      if (this.enemy.ene.indexOf(enemy) % 2 === 0) {
+      if (enemy.width === 15) {
+        enemy.incomingUp();
+      } else if (this.enemy.ene.indexOf(enemy) % 2 === 0) {
         enemy.incomingRight();
       } else {
         enemy.incomingLeft();
@@ -111,6 +113,7 @@ class Game {
     if (this.gameIsRunning) {
       setInterval(() => {
         this.enemy.enemyLoop();
+        //this.enemy.enemyLoopVertical();
       }, this.difficulty);
     }
   }

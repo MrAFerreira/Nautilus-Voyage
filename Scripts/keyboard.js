@@ -20,6 +20,8 @@ class Controller {
 
   changeScreens() {
     this.$titleScreen.classList.toggle('fade-out');
+    this.$difficultyLevels.classList.remove('fade-in');
+    this.$difficultyLevels.classList.toggle('fade-out');
     this.$gameOverScreen.classList.toggle('fade-out');
     this.$winScreen.classList.toggle('fade-out');
     this.$infoScreen.classList.toggle('fade-out');
