@@ -12,7 +12,7 @@ class OxygenTank extends Powerup {
     super(game, positionY);
     this.game = game;
     this.positionY = positionY;
-    this.positionX = this.game.$canvas.width / 2;
+    this.positionX = Math.random() * this.game.$canvas.width;
     this.width = 20;
     this.height = 30;
     this.tanksArray = [];

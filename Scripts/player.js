@@ -22,8 +22,6 @@ class Player {
   }
 
   newPos() {
-    //let newPositionY = this.positionY + this.speedY;
-    //let newPositionX = this.positionX + this.speedX;
     this.speedY += this.gravitySpeed;
     this.positionY += this.speedY;
     this.positionX += this.speedX;

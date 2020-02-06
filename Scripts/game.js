@@ -12,7 +12,6 @@ class Game {
     this.gameStarted = false;
     this.gameIsRunning = false;
     this.difficulty = 1000;
-    //this.gameOver = false;
     this.controller.setControlBindings();
     this.mainTheme = new Audio('audio/ambient2(Nautilus).mp3');
     this.hitSound = new Audio('audio/qubodupImpactWood.ogg');
@@ -48,7 +47,6 @@ class Game {
     game.context.clearRect(0, 0, $canvas.width, $canvas.height);
     game.paint();
     game.runLogic();
-    //game.player.checkBoundaries();
     if (this.gameIsRunning) {
       window.requestAnimationFrame(timestamp => this.loop(timestamp));
     }
@@ -113,7 +111,6 @@ class Game {
     if (this.gameIsRunning) {
       setInterval(() => {
         this.enemy.enemyLoop();
-        //this.enemy.enemyLoopVertical();
       }, this.difficulty);
     }
   }
