@@ -69,24 +69,21 @@ class Enemy {
         enemy = new Jellyfish(this.game, 700 + i * 50);
         this.ene.push(enemy);
       }
-    } else if (this.game.depth > -6000) {
-      for (let i = 0; i < 4; i++) {
+    } else if (this.game.depth > -5500) {
+      for (let i = 0; i < 2; i++) {
         let enemy = null;
         if (i % 2 === 0) enemy = new Whale(this.game, 700 + i * 50);
         else enemy = new Whale(this.game, -1 * (700 + i * 50));
         this.ene.push(enemy);
       }
-    }
-  }
-
-  /* enemyLoopVertical() {
-    if (this.game.depth < -2000 && this.game.depth > -5500) {
+    } else if (this.game.depth > -7000) {
       for (let i = 0; i < 6; i++) {
-        let enemy = new Jellyfish(this.game, 700 + i * 50);
+        let enemy = null;
+        enemy = new Anglerfish(this.game, 700 + i * 50);
         this.ene.push(enemy);
       }
     }
-  } */
+  }
 
   paint() {
     let fishImageUrl;
@@ -193,11 +190,30 @@ class Jellyfish extends Enemy {
   }
 
   paint() {
-    this.game.context.save();
-    this.game.context.beginPath();
-    this.game.context.fillStyle = 'white';
-    this.game.context.fillRect(this.positionX, this.positionY, this.width, this.height);
-    this.game.context.closePath();
-    this.game.context.restore();
+    let jellyfishImageUrl = 'imgs/jellyfish.png';
+    let jellyfishImage = new Image();
+    jellyfishImage.src = jellyfishImageUrl;
+    this.game.context.drawImage(jellyfishImage, this.positionX, this.positionY);
+  }
+}
+
+class Anglerfish extends Enemy {
+  constructor(game, posX) {
+    super(game, posX);
+    this.game = game;
+    this.positionX = Math.random() * this.game.$canvas.width;
+    this.positionY = posX;
+    this.height = 50;
+    this.width = 40;
+    this.speedY = 2;
+    this.speedX = 0;
+    this.ene = [];
+  }
+
+  paint() {
+    let anglerfishImageUrl = 'imgs/anglerfish.png';
+    let anglerfishImage = new Image();
+    anglerfishImage.src = anglerfishImageUrl;
+    this.game.context.drawImage(anglerfishImage, this.positionX, this.positionY);
   }
 }

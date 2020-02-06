@@ -99,7 +99,7 @@ class Game {
     this.scoreboard.runLogic();
 
     for (let enemy of this.enemy.ene) {
-      if (enemy.width === 15) {
+      if (enemy.width === 15 || enemy.width === 40) {
         enemy.incomingUp();
       } else if (this.enemy.ene.indexOf(enemy) % 2 === 0) {
         enemy.incomingRight();
