@@ -39,6 +39,14 @@ class Scoreboard {
   paint() {
     this.$currentDepth.innerText = Math.abs(this.game.depth);
     this.$scoreSpan.innerText = Math.abs(this.maximumDepth);
-    this.$oxygenCapacity.innerText = parseInt(this.game.player.oxygen);
+    if (this.game.player.oxygen <= 50) {
+      this.$oxygenCapacity.innerText = parseInt(this.game.player.oxygen);
+      this.$oxygenCapacity.classList.remove('blue');
+      this.$oxygenCapacity.classList.add('red');
+    } else {
+      this.$oxygenCapacity.innerText = parseInt(this.game.player.oxygen);
+      this.$oxygenCapacity.classList.remove('red');
+      this.$oxygenCapacity.classList.add('blue');
+    }
   }
 }

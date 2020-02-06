@@ -2,7 +2,7 @@ class Enemy {
   constructor(game, posX) {
     this.game = game;
     this.positionX = posX;
-    this.positionY = Math.random() * this.game.$canvas.height;
+    this.positionY = Math.random() * this.game.$canvas.height + 50;
     this.height = 15;
     this.width = 30;
     this.speedY = 0;
@@ -12,7 +12,7 @@ class Enemy {
   }
 
   incomingLeft() {
-    if (this.game.player.positionY >= 550) {
+    if (this.game.player.positionY >= 450) {
       this.speedY += this.game.player.speedY * this.game.player.gravitySpeed;
       this.positionY -= this.speedY;
     }
@@ -25,7 +25,7 @@ class Enemy {
   } */
 
   incomingRight() {
-    if (this.game.player.positionY >= 550) {
+    if (this.game.player.positionY >= 450) {
       this.speedY += this.game.player.speedY * this.game.player.gravitySpeed;
       this.positionY -= this.speedY;
     }
@@ -103,7 +103,7 @@ class Turtle extends Enemy {
     super(game, posX);
     this.game = game;
     this.positionX = posX;
-    this.positionY = Math.random() * this.game.$canvas.height;
+    this.positionY = Math.random() * this.game.$canvas.height + 50;
     this.height = 30;
     this.width = 60;
     this.speedY = 0;
@@ -129,7 +129,7 @@ class Shark extends Enemy {
     super(game, posX);
     this.game = game;
     this.positionX = posX;
-    this.positionY = Math.random() * this.game.$canvas.height;
+    this.positionY = Math.random() * this.game.$canvas.height + 50;
     this.height = 40;
     this.width = 100;
     this.speedY = 0;
@@ -155,7 +155,7 @@ class Whale extends Enemy {
     super(game, posX);
     this.game = game;
     this.positionX = posX;
-    this.positionY = Math.random() * this.game.$canvas.height;
+    this.positionY = Math.random() * this.game.$canvas.height + 50;
     this.height = 100;
     this.width = 300;
     this.speedY = 0;

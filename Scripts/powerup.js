@@ -24,19 +24,29 @@ class OxygenTank extends Powerup {
       let tankImage = new Image();
       tankImage.src = tankImageUrl;
       this.game.context.drawImage(tankImage, tank.positionX, tank.positionY);
-      /* this.game.context.save();
-      this.game.context.beginPath();
-      this.game.context.fillStyle = 'yellow';
-      this.game.context.fillRect(tank.positionX, tank.positionY, tank.width, tank.height);
-      this.game.context.closePath();
-      this.game.context.restore(); */
     }
   }
 
   addOxygenTank() {
-    if (Math.abs(this.game.depth) % 500 === 0 && this.game.depth < 0) {
-      let newTank = new OxygenTank(game, Math.abs(this.game.depth) + 200);
-      this.tanksArray.push(newTank);
+    switch (this.game.difficulty) {
+      case 8000:
+        if (Math.abs(this.game.depth) % 500 === 0 && this.game.depth < 0) {
+          let newTank = new OxygenTank(game, Math.abs(this.game.depth) + 200);
+          this.tanksArray.push(newTank);
+        }
+        break;
+      case 5000:
+        if (Math.abs(this.game.depth) % 1000 === 0 && this.game.depth < 0) {
+          let newTank = new OxygenTank(game, Math.abs(this.game.depth) + 200);
+          this.tanksArray.push(newTank);
+        }
+        break;
+      case 3000:
+        if (Math.abs(this.game.depth) % 1500 === 0 && this.game.depth < 0) {
+          let newTank = new OxygenTank(game, Math.abs(this.game.depth) + 200);
+          this.tanksArray.push(newTank);
+        }
+        break;
     }
   }
 
