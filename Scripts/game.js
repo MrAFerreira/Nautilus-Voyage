@@ -39,6 +39,7 @@ class Game {
       this.gameIsRunning = !this.gameIsRunning;
     } else {
       this.gameIsRunning = !this.gameIsRunning;
+      this.enemyTimer();
       this.loop();
     }
   }
@@ -109,8 +110,9 @@ class Game {
 
   enemyTimer() {
     if (this.gameIsRunning) {
-      setInterval(() => {
+      setTimeout(() => {
         this.enemy.enemyLoop();
+        this.enemyTimer();
       }, this.difficulty);
     }
   }
