@@ -87,14 +87,22 @@ class Player {
   }
 
   paint() {
-    let playerImageUrl;
-    if (this.game.player.direction === 'east') {
+    let playerImageUrlEast = './imgs/yellow_submarine_east.png';
+    let playerImageUrlWest = './imgs/yellow_submarine.png';
+    /*  if (this.game.player.direction === 'east') {
       playerImageUrl = './imgs/yellow_submarine_east.png';
     } else {
       playerImageUrl = './imgs/yellow_submarine.png';
+    } */
+    let playerImageEast = new Image();
+    playerImageEast.src = playerImageUrlEast;
+    let playerImageWest = new Image();
+    playerImageWest.src = playerImageUrlWest;
+    if (this.game.player.direction === 'east') {
+      this.game.context.drawImage(playerImageEast, this.positionX, this.positionY);
+    } else {
+      this.game.context.drawImage(playerImageWest, this.positionX, this.positionY);
     }
-    let playerImage = new Image();
-    playerImage.src = playerImageUrl;
-    this.game.context.drawImage(playerImage, this.positionX, this.positionY);
+    //this.game.context.drawImage(playerImage, this.positionX, this.positionY);
   }
 }
