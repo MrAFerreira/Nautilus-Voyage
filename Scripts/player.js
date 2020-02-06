@@ -74,7 +74,7 @@ class Player {
     } else if (this.game.depth > -3000) {
       this.oxygen -= 0.01;
     } else {
-      this.oxygen -= 0.02;
+      this.oxygen -= 0.015;
     }
   }
 
