@@ -89,11 +89,6 @@ class Player {
   paint() {
     let playerImageUrlEast = './imgs/yellow_submarine_east.png';
     let playerImageUrlWest = './imgs/yellow_submarine.png';
-    /*  if (this.game.player.direction === 'east') {
-      playerImageUrl = './imgs/yellow_submarine_east.png';
-    } else {
-      playerImageUrl = './imgs/yellow_submarine.png';
-    } */
     let playerImageEast = new Image();
     playerImageEast.src = playerImageUrlEast;
     let playerImageWest = new Image();
@@ -103,6 +98,5 @@ class Player {
     } else {
       this.game.context.drawImage(playerImageWest, this.positionX, this.positionY);
     }
-    //this.game.context.drawImage(playerImage, this.positionX, this.positionY);
   }
 }

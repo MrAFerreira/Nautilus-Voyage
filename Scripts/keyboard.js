@@ -38,19 +38,16 @@ class Controller {
 
     this.$easyButton.addEventListener('click', () => {
       this.game.difficulty = 8000;
-      console.log(this.game.difficulty);
       this.changeScreens();
     });
 
     this.$normalButton.addEventListener('click', () => {
       this.game.difficulty = 5000;
-      console.log(this.game.difficulty);
       this.changeScreens();
     });
 
     this.$hardButton.addEventListener('click', () => {
       this.game.difficulty = 3000;
-      console.log(this.game.difficulty);
       this.changeScreens();
     });
 
@@ -76,7 +73,6 @@ class Controller {
     });
 
     this.$infoButton.addEventListener('click', () => {
-      console.log('info clicked');
       if (this.game.gameIsRunning) {
         this.game.pause();
         this.$infoScreen.classList.remove('fade-out');

@@ -14,6 +14,8 @@ body {
   background-color: dodgerblue;
   background-image: url('/imgs/nautilus-background.png');
   background-size: cover;
+  background-repeat: no-repeat;
+  margin-bottom: 40px;
 }
 
 section {

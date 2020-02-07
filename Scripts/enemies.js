@@ -20,10 +20,6 @@ class Enemy {
     this.positionX += this.speedX;
   }
 
-  /* setPosX(posX) {
-    this.positionX = posX;
-  } */
-
   incomingRight() {
     if (this.game.player.positionY >= 450) {
       this.speedY += this.game.player.speedY * this.game.player.gravitySpeed;
@@ -34,10 +30,6 @@ class Enemy {
   }
 
   incomingUp() {
-    /* if (this.game.player.positionY >= 550) {
-      this.speedY += this.game.player.speedY * this.game.player.gravitySpeed;
-      this.positionY -= this.speedY;
-    } */
     this.positionY -= 3;
   }
 
