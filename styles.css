@@ -11,8 +11,9 @@ body {
   justify-content: center;
   align-items: center;
   font-family: VCR, Arial, Helvetica, sans-serif;
-  /*background: linear-gradient(#00d4ff, #090979);*/
   background-color: dodgerblue;
+  background-image: url('/imgs/nautilus-background.png');
+  background-size: cover;
 }
 
 section {
@@ -73,6 +74,10 @@ canvas {
 #title-button:hover:before {
   visibility: visible;
   transform: scaleX(1);
+}
+
+#title-button:hover {
+  cursor: pointer;
 }
 
 #difficulty-levels {
@@ -266,8 +271,6 @@ aside p {
 footer {
   display: flex;
   flex-direction: column;
-  /* justify-content: flex-end;
-  align-items: flex-end; */
 }
 
 #info-screen p {
